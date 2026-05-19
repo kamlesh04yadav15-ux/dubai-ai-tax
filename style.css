@@ -215,3 +215,71 @@ body{
 
   color:#94a3b8;
 }
+/* MOBILE MENU */
+
+.menu-toggle{
+
+  display:none;
+
+  font-size:35px;
+
+  cursor:pointer;
+
+  color:#facc15;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.navbar{
+
+  padding:20px;
+}
+
+.menu-toggle{
+
+  display:block;
+}
+
+.nav-links{
+
+  position:absolute;
+
+  top:80px;
+
+  left:0;
+
+  width:100%;
+
+  background:#020617;
+
+  flex-direction:column;
+
+  text-align:center;
+
+  padding:30px 0;
+
+  display:none;
+}
+
+.nav-links.active{
+
+  display:flex;
+}
+
+.hero-content h1{
+
+  font-size:50px;
+}
+
+.hero-content p{
+
+  font-size:18px;
+}
+
+.calculator-box{
+
+  width:100%;
+}
+}

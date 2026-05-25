@@ -1,33 +1,77 @@
 const fs = require("fs");
+const axios = require("axios");
 
-const blogs = [
+const GROQ_API_KEY = process.env.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;
+const NEWS_API_KEY = process.env.aa8784ca4feb42a0af0cc261654374fc;
+
+async function generateBlogs() {
+
+const news = await axios.get(
+
+`https://newsapi.org/v2/everything?q=UAE tax OR Dubai VAT&language=en&pageSize=3&apiKey=${NEWS_API_KEY}`
+
+);
+
+const articles = news.data.articles;
+
+let blogs = [];
+
+for (const article of articles) {
+
+const prompt = `
+Rewrite this UAE tax news into a short unique blog summary.
+Keep it professional and SEO friendly.
+Do not copy wording.
+
+Title:
+${article.title}
+
+Content:
+${article.description}
+`;
+
+const ai = await axios.post(
+
+"https://api.groq.com/openai/v1/chat/completions",
 
 {
-title:"Dubai VAT Compliance Updates",
+model:"llama3-70b-8192",
 
-summary:"Businesses in the UAE are preparing for revised VAT compliance procedures expected in upcoming regulatory updates.",
-
-date:new Date().toLocaleDateString()
+messages:[
+{
+role:"user",
+content:prompt
+}
+]
 },
 
 {
-title:"UAE Corporate Tax Reporting",
-
-summary:"Companies operating in Dubai may need improved financial reporting under corporate tax regulations.",
-
-date:new Date().toLocaleDateString()
-},
-
-{
-title:"Free Zone Tax Benefits",
-
-summary:"UAE free zone companies continue receiving tax advantages while adapting to new compliance frameworks.",
-
-date:new Date().toLocaleDateString()
+headers:{
+Authorization:`Bearer ${GROQ_API_KEY}`,
+"Content-Type":"application/json"
+}
 }
 
-];
+);
+
+blogs.push({
+
+title:article.title,
+
+summary:ai.data.choices[0].message.content,
+
+source:article.url,
+
+date:new Date().toLocaleDateString()
+
+});
+
+}
 
 fs.writeFileSync("blogs.json", JSON.stringify(blogs,null,2));
 
 console.log("Blogs Updated");
+
+}
+
+generateBlogs();

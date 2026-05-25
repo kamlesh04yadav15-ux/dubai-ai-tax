@@ -121,6 +121,7 @@ body{
     font-family:'Inter', sans-serif;
     background:#F4F5FC;
     color:#0B1533;
+    overflow-x:hidden;
 }
 
 
@@ -184,22 +185,27 @@ body{
 }
 
 .badge{
-    width:fit-content;
-    background:#FFFFFF;
-    padding:16px 24px;
-    border-radius:999px;
-    font-size:18px;
-    font-weight:700;
-    margin-bottom:35px;
-    color:#000;
+
+    background:#EEF4FF;
+
+    color:#0A1B44;
+
+    border:1px solid #D8E5FF;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.03);
 }
 
 .hero-left h1{
-    font-size:84px;
-    line-height:95px;
+
+    font-size:clamp(42px,8vw,84px);
+
+    line-height:1.05;
+
     font-weight:800;
+
     margin-bottom:25px;
-    color:#091330;
+
+    color:#081533;
 }
 
 .hero-left p{
@@ -477,7 +483,6 @@ body{
   0 0 20px rgba(0,191,255,.5),
   0 0 40px rgba(122,0,255,.35);
 
-  animation: glow 4s infinite linear;
 }
 
 /* BARS */
@@ -529,23 +534,16 @@ body{
 
 .logo h2,
 .footer-logo h2{
+
   font-size:58px;
   font-weight:800;
-  font-style:italic;
+  font-style:normal;
 
-  background:linear-gradient(
-  90deg,
-  #ffffff,
-  #8be9ff,
-  #00bfff
-  );
-
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  color:#081533;
 
   letter-spacing:-2px;
 
-  animation: shine 4s linear infinite;
+  line-height:1;
 }
 
 /* =========================
@@ -586,31 +584,20 @@ body{
 
 }
 
-@keyframes shine{
-
-  0%{
-    filter:brightness(1);
-  }
-
-  50%{
-    filter:brightness(1.5);
-  }
-
-  100%{
-    filter:brightness(1);
-  }
-
-}
 
 /* =========================
    FOOTER
 ========================= */
 
 .footer{
-  margin-top:80px;
-  padding:40px 20px;
 
-  background:transparent;
+  margin-top:100px;
+
+  padding:50px 20px;
+
+  background:#F7F8FC;
+
+  border-top:1px solid #E5EAF3;
 
   text-align:center;
 }
@@ -627,14 +614,20 @@ body{
 
 @media(max-width:768px){
 
+  .logo{
+    gap:10px;
+  }
+
   .logo h2,
   .footer-logo h2{
-    font-size:38px;
+    font-size:32px;
+    letter-spacing:-1px;
   }
 
   .logo-box{
-    width:58px;
-    height:58px;
+    width:52px;
+    height:52px;
+    border-radius:16px;
   }
 
 }

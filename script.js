@@ -123,41 +123,17 @@ document.getElementById("vatTool").addEventListener("click", increaseTax);
 document.getElementById("corporateTool").addEventListener("click", increaseTax);
 
 document.getElementById("aiTool").addEventListener("click", increaseTax);
-// ==========================
-// UAE TAX NEWS BLOGS
-// ==========================
 
-const blogs = [
+});
+fetch("blogs.json")
 
-{
-title:"UAE VAT Compliance Updates 2026",
+.then(res => res.json())
 
-summary:"Businesses in the UAE may need updated VAT reporting procedures under the latest compliance framework introduced for 2026.",
-
-source:"https://gulfnews.com"
-},
-
-{
-title:"Dubai Corporate Tax Filing Changes",
-
-summary:"Companies operating in Dubai are preparing for revised corporate tax filing requirements and reporting standards.",
-
-source:"https://www.khaleejtimes.com"
-},
-
-{
-title:"Free Zone Tax Benefits Explained",
-
-summary:"UAE free zone businesses continue receiving tax advantages, although new compliance rules are expected in upcoming updates.",
-
-source:"https://www.thenationalnews.com"
-}
-
-];
+.then(data => {
 
 const blogContainer = document.getElementById("blogContainer");
 
-blogs.forEach(blog => {
+data.forEach(blog => {
 
 blogContainer.innerHTML += `
 
@@ -167,12 +143,12 @@ blogContainer.innerHTML += `
 
 <p>${blog.summary}</p>
 
-<a href="${blog.source}" target="_blank">
-Read Source
-</a>
+<span>${blog.date}</span>
 
 </div>
 
 `;
+
+});
 
 });
